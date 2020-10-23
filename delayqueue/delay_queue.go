@@ -24,7 +24,7 @@ func Init() {
 }
 
 // Push 添加一个Job到队列中
-func Push(job Job) error {
+func Push(job *Job) error {
 	if job.Id == "" || job.Topic == "" || job.Delay < 0 || job.TTR <= 0 {
 		return errors.New("invalid job")
 	}
