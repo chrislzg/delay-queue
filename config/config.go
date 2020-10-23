@@ -9,7 +9,7 @@ var (
 
 const (
 	// DefaultBindAddress 监听地址
-	DefaultBindAddress = "0.0.0.0:9277"
+	//DefaultBindAddress = "0.0.0.0:9277"
 	// DefaultBucketSize bucket数量
 	DefaultBucketSize = 3
 	// DefaultBucketName bucket名称
@@ -104,7 +104,6 @@ func Init(config *Config) {
 
 // 初始化默认配置
 func (config *Config) initDefaultConfig() {
-	config.BindAddress = DefaultBindAddress
 	config.BucketSize = DefaultBucketSize
 	config.BucketName = DefaultBucketName
 	config.QueueName = DefaultQueueName
