@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/chrislzg/delay-queue/config"
 	"github.com/garyburd/redigo/redis"
-	"github.com/ouqiang/delay-queue/config"
 )
 
 var (

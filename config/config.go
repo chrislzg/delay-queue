@@ -1,11 +1,5 @@
 package config
 
-import (
-	"log"
-
-	"gopkg.in/ini.v1"
-)
-
 // 解析配置文件
 
 var (
@@ -15,31 +9,31 @@ var (
 
 const (
 	// DefaultBindAddress 监听地址
-	DefaultBindAddress         = "0.0.0.0:9277"
+	DefaultBindAddress = "0.0.0.0:9277"
 	// DefaultBucketSize bucket数量
-	DefaultBucketSize          = 3
+	DefaultBucketSize = 3
 	// DefaultBucketName bucket名称
-	DefaultBucketName          = "dq_bucket_%d"
+	DefaultBucketName = "dq_bucket_%d"
 	// DefaultQueueName 队列名称
-	DefaultQueueName           = "dq_queue_%s"
+	DefaultQueueName = "dq_queue_%s"
 	// DefaultQueueBlockTimeout 轮询队列超时时间
-	DefaultQueueBlockTimeout   = 178
+	DefaultQueueBlockTimeout = 178
 	// DefaultRedisHost Redis连接地址
-	DefaultRedisHost           = "127.0.0.1:6379"
+	DefaultRedisHost = "127.0.0.1:6379"
 	// DefaultRedisDb Redis数据库编号
-	DefaultRedisDb             = 1
+	DefaultRedisDb = 1
 	// DefaultRedisPassword Redis密码
-	DefaultRedisPassword       = ""
+	DefaultRedisPassword = ""
 	// DefaultRedisMaxIdle Redis连接池闲置连接数
-	DefaultRedisMaxIdle        = 10
+	DefaultRedisMaxIdle = 10
 	// DefaultRedisMaxActive Redis连接池最大激活连接数, 0为不限制
-	DefaultRedisMaxActive      = 0
+	DefaultRedisMaxActive = 0
 	// DefaultRedisConnectTimeout Redis连接超时时间,单位毫秒
 	DefaultRedisConnectTimeout = 5000
 	// DefaultRedisReadTimeout Redis读取超时时间, 单位毫秒
-	DefaultRedisReadTimeout    = 180000
+	DefaultRedisReadTimeout = 180000
 	// DefaultRedisWriteTimeout Redis写入超时时间, 单位毫秒
-	DefaultRedisWriteTimeout   = 3000
+	DefaultRedisWriteTimeout = 3000
 )
 
 // Config 应用配置
@@ -64,39 +58,48 @@ type RedisConfig struct {
 	WriteTimeout   int // 写入超时, 单位毫秒
 }
 
-// Init 初始化配置
-func Init(path string) {
+//// Init 初始化配置
+//func Init(path string) {
+//	Setting = &Config{}
+//	if path == "" {
+//		Setting.initDefaultConfig()
+//		return
+//	}
+//
+//	Setting.parse(path)
+//}
+//
+//// 解析配置文件
+//func (config *Config) parse(path string) {
+//	file, err := ini.Load(path)
+//	if err != nil {
+//		log.Fatalf("无法解析配置文件#%s", err.Error())
+//	}
+//
+//	section := file.Section("")
+//	config.BindAddress = section.Key("bind_address").MustString(DefaultBindAddress)
+//	config.BucketSize = section.Key("bucket_size").MustInt(DefaultBucketSize)
+//	config.BucketName = section.Key("bucket_name").MustString(DefaultBucketName)
+//	config.QueueName = section.Key("queue_name").MustString(DefaultQueueName)
+//	config.QueueBlockTimeout = section.Key("queue_block_timeout").MustInt(DefaultQueueBlockTimeout)
+//
+//	config.Redis.Host = section.Key("redis.host").MustString(DefaultRedisHost)
+//	config.Redis.Db = section.Key("redis.db").MustInt(DefaultRedisDb)
+//	config.Redis.Password = section.Key("redis.password").MustString(DefaultRedisPassword)
+//	config.Redis.MaxIdle = section.Key("redis.max_idle").MustInt(DefaultRedisMaxIdle)
+//	config.Redis.MaxActive = section.Key("redis.max_active").MustInt(DefaultRedisMaxActive)
+//	config.Redis.ConnectTimeout = section.Key("redis.connect_timeout").MustInt(DefaultRedisConnectTimeout)
+//	config.Redis.ReadTimeout = section.Key("redis.read_timeout").MustInt(DefaultRedisReadTimeout)
+//	config.Redis.WriteTimeout = section.Key("redis.write_timeout").MustInt(DefaultRedisWriteTimeout)
+//}
+
+func Init(config *Config) {
 	Setting = &Config{}
-	if path == "" {
+	if config == nil {
 		Setting.initDefaultConfig()
 		return
 	}
-
-	Setting.parse(path)
-}
-
-// 解析配置文件
-func (config *Config) parse(path string) {
-	file, err := ini.Load(path)
-	if err != nil {
-		log.Fatalf("无法解析配置文件#%s", err.Error())
-	}
-
-	section := file.Section("")
-	config.BindAddress = section.Key("bind_address").MustString(DefaultBindAddress)
-	config.BucketSize = section.Key("bucket_size").MustInt(DefaultBucketSize)
-	config.BucketName = section.Key("bucket_name").MustString(DefaultBucketName)
-	config.QueueName = section.Key("queue_name").MustString(DefaultQueueName)
-	config.QueueBlockTimeout = section.Key("queue_block_timeout").MustInt(DefaultQueueBlockTimeout)
-
-	config.Redis.Host = section.Key("redis.host").MustString(DefaultRedisHost)
-	config.Redis.Db = section.Key("redis.db").MustInt(DefaultRedisDb)
-	config.Redis.Password = section.Key("redis.password").MustString(DefaultRedisPassword)
-	config.Redis.MaxIdle = section.Key("redis.max_idle").MustInt(DefaultRedisMaxIdle)
-	config.Redis.MaxActive = section.Key("redis.max_active").MustInt(DefaultRedisMaxActive)
-	config.Redis.ConnectTimeout = section.Key("redis.connect_timeout").MustInt(DefaultRedisConnectTimeout)
-	config.Redis.ReadTimeout = section.Key("redis.read_timeout").MustInt(DefaultRedisReadTimeout)
-	config.Redis.WriteTimeout = section.Key("redis.write_timeout").MustInt(DefaultRedisWriteTimeout)
+	Setting = config
 }
 
 // 初始化默认配置

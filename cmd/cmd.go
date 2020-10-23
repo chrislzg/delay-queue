@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ouqiang/delay-queue/config"
-	"github.com/ouqiang/delay-queue/delayqueue"
-	"github.com/ouqiang/delay-queue/routers"
+	"github.com/chrislzg/delay-queue/config"
+	"github.com/chrislzg/delay-queue/delayqueue"
+	"github.com/chrislzg/delay-queue/routers"
 )
 
 // Cmd 应用入口Command
