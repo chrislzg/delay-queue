@@ -38,7 +38,7 @@ const (
 
 // Config 应用配置
 type Config struct {
-	BindAddress       string      // http server 监听地址
+	//BindAddress       string      // http server 监听地址
 	BucketSize        int         // bucket数量
 	BucketName        string      // bucket在redis中的键名,
 	QueueName         string      // ready queue在redis中的键名
