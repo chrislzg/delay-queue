@@ -53,7 +53,7 @@ func Push(resp http.ResponseWriter, req *http.Request) {
 
 	log.Printf("add job#%+v\n", job)
 	job.Delay = time.Now().Unix() + job.Delay
-	err = delayqueue.Push(job)
+	err = delayqueue.Push(&job)
 
 	if err != nil {
 		log.Printf("添加job失败#%s", err.Error())
